@@ -1,0 +1,52 @@
+{#
+/**
+ * Currency Price plugin for Craft CMS
+ *
+ * Currency Price Settings.twig
+ *
+ * @author    Fred Carlsen
+ * @copyright Copyright (c) 2016 Fred Carlsen
+ * @link      http://sjelfull.no
+ * @package   CurrencyPrice
+ * @since     1.0.0
+ */
+#}
+
+{% import "_includes/forms" as forms %}
+
+{% includeCssResource "currencyprice/css/CurrencyPrice_Style.css" %}
+{% includeJsResource "currencyprice/js/jquery-searcher/dist/jquery.searcher.min.js" %}
+{% includeJsResource "currencyprice/js/CurrencyPrice_Script.js" %}
+
+    <h2>Available currencies</h2>
+    <div class="currencyprice-table" data-id="js-currencyPrice">
+        <input class="text nicetext fullwidth currencyprice-input  js-currencyPriceInput" placeholder="Search for currency" style="max-width: 750px;" />
+        <table class="data fullwidth" style="max-width: 750px;">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Code</th>
+                    <th>Enabled</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for currency in currencies %}
+                {% set code = currency.ISO4217Code %}
+                {% set id = 'enabledCurrencies[' ~ code ~ ']' %}
+                {% set enabled = settings.enabledCurrencies[code] is defined and settings.enabledCurrencies[code] %}
+                <tr class="js-row">
+                    <td class="js-title js-text">{{ currency.title }}</td>
+                    <td class="js-code js-text">{{ code }}</td>
+                    <td>
+                        {{ forms.lightswitchField({
+                            id:           id,
+                            name:         id,
+                            on:           enabled,
+                            errors:       settings.getErrors(id)
+                        }) }}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>

@@ -1,0 +1,28 @@
+{#
+/**
+ * Currency Price plugin for Craft CMS
+ *
+ * CurrencyPriceFieldType HTML
+ *
+ * @author    Fred Carlsen
+ * @copyright Copyright (c) 2016 Fred Carlsen
+ * @link      http://sjelfull.no
+ * @package   CurrencyPrice
+ * @since     1.0.0
+ */
+#}
+
+{% import "_includes/forms" as forms %}
+
+{% for currency,enabled in enabledCurrencies %}
+    {% set value = values.price[currency] is defined ? values.price[currency] : 0 %}
+
+    {{ forms.textField({
+        label: currency,
+        id: id ~ 'price-' ~ currency,
+        class: 'nicetext',
+        name: name ~ '[price]' ~ '[' ~ currency ~ ']',
+        value: value,
+        required: false,
+    }) }}
+{% endfor %}
