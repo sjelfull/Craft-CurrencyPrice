@@ -39,7 +39,7 @@ class CurrencyPriceFieldType extends BaseFieldType
      */
     public function defineContentAttribute ()
     {
-        return AttributeType::Mixed;
+        return [ AttributeType::Mixed, 'model' => 'CurrencyPriceModel' ];
     }
 
     /**

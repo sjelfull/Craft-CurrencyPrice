@@ -40,7 +40,7 @@ class CurrencyPriceModel extends BaseModel
         $currency = null;
 
         if ( isset($prices[ $code ]) ) {
-            $currency = $prices[ $code ];
+            $currency = (int) $prices[ $code ];
         }
 
         return $currency;
