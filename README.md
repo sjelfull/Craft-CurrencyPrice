@@ -28,6 +28,7 @@ If the currency doesn't exist, `null` will be returned.
 
 ## Currency Price Roadmap
 
+* Add Matrix support
 * Add default toggle to currency list
 * Improve template methods
 * Add filter to convert a price into another currency on the fly
