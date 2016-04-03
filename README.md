@@ -21,7 +21,7 @@ Select the currencies you want to enable in the fieldtype settings.
 
 You can get a currency in your template like so:
 ```
-    {{ fieldHandle.getPrice('USD') }}
+{{ fieldHandle.getPrice('USD') }}
 ```
 
 If the currency doesn't exist, `null` will be returned.
